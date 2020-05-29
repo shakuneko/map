@@ -112,7 +112,7 @@ const  App= () => {
             description={site.ar}
           >
             <VictoryPie
-            radius={20}
+            radius={17}
             data={[
               {x:site.tot-site.sbi,y:100-(site.sbi/site.tot)*100},
               //全部減借走就是剩的車子   圓餅100%-減被借走車輛所佔的百分比
@@ -120,7 +120,7 @@ const  App= () => {
               //被借走的
             ]}
             colorScale={dataColor}
-            innerRadius={5}
+            innerRadius={7}
             labelRadius={10}
             />
             </Marker>
