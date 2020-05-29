@@ -7,7 +7,9 @@ import * as Location from "expo-location";
 import { Icon } from "react-native-elements";
 import metroJson from "./json/metro.json"
 import axios from "axios";
+import { VictoryPie } from "victory-native";
 
+const dataColor = ["#5A5AAD", "#A3D1D1"];
 const UBIKE_URL =
   "https://data.ntpc.gov.tw/api/datasets/71CD1490-A2DF-4198-BEF1-318479775E8A/json/preview";
 
@@ -109,8 +111,19 @@ const  App= () => {
             title={`${site.sna} ${site.sbi}/${site.tot}`}
             description={site.ar}
           >
-            <Image style={styles.ring2} source={{uri:"https://uploadfile.huiyi8.com/up/2a/5c/60/2a5c60e9a4268557b8580e8dc03eddda.png"}} />
-           </Marker>
+            <VictoryPie
+            radius={20}
+            data={[
+              {x:site.tot-site.sbi,y:100-(site.sbi/site.tot)*100},
+              //全部減借走就是剩的車子   圓餅100%-減被借走車輛所佔的百分比
+              {x:site.sbi,y:(site.sbi/site.tot)*100},
+              //被借走的
+            ]}
+            colorScale={dataColor}
+            innerRadius={5}
+            labelRadius={10}
+            />
+            </Marker>
         ))}
       </MapView>
 
